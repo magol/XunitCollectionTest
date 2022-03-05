@@ -2,6 +2,9 @@
 
 namespace CollectionTest;
 
+/// <summary>
+/// My own copy of <see cref="Xunit.CollectionDefinitionAttribute"/> that have "AllowMultiple" set to true and a second constructor for parameters.
+/// </summary>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
 public sealed class CollectionDefinitionAttribute : Attribute
 {
