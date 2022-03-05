@@ -21,15 +21,8 @@ public class DatabaseFixture : IDisposable
 }
 
 [CollectionDefinition("Database collection_1", parameters: new[] { "myConnectionString1", "Some other information"})]
-public class DatabaseCollection_1 : ICollectionFixture<DatabaseFixture>
-{
-    // This class has no code, and is never created. Its purpose is simply
-    // to be the place to apply [CollectionDefinition] and all the
-    // ICollectionFixture<> interfaces.
-}
-
-[CollectionDefinitionAttribute("Database collection_2", "myConnectionString2", "...")]
-public class DatabaseCollection_2 : ICollectionFixture<DatabaseFixture>
+[CollectionDefinition("Database collection_2", "myConnectionString2", "...")]
+public class DatabaseCollection : ICollectionFixture<DatabaseFixture>
 {
     // This class has no code, and is never created. Its purpose is simply
     // to be the place to apply [CollectionDefinition] and all the

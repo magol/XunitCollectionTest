@@ -2,7 +2,7 @@
 
 namespace CollectionTest;
 
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
 public sealed class CollectionDefinitionAttribute : Attribute
 {
     /// <summary>
