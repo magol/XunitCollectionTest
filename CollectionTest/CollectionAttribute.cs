@@ -11,8 +11,4 @@ public sealed class CollectionAttribute : Attribute
     public CollectionAttribute(string name)
     {
     }
-
-    public CollectionAttribute(string name, params string[] parameters)
-    {
-    }
 }

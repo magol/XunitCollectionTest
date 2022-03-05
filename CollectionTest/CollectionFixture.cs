@@ -1,38 +1,37 @@
 ﻿using System;
 using Xunit;
 
-namespace CollectionTest
+namespace CollectionTest;
+
+public class DatabaseFixture : IDisposable
 {
-
-    public class DatabaseFixture : IDisposable
+    public DatabaseFixture(string connectionString, string someOtherParameter)
     {
-        /// <summary>
-        /// Is used if no connection string is given
-        /// </summary>
-        public DatabaseFixture() : this("DefaultConnectionString", "something else")
-        {
-        }
+        Db = new SqlConnection(connectionString);
 
-        public DatabaseFixture(string connectionString, string someOtherParameter)
-        {
-            Db = new SqlConnection(connectionString);
-
-            // ... initialize data in the test database ...
-        }
-
-        public void Dispose()
-        {
-            // ... clean up test data from the database ...
-        }
-
-        public SqlConnection Db { get; private set; }
+        // ... initialize data in the test database ...
     }
 
-    [CollectionDefinition("Database collection")]
-    public class DatabaseCollection : ICollectionFixture<DatabaseFixture>
+    public void Dispose()
     {
-        // This class has no code, and is never created. Its purpose is simply
-        // to be the place to apply [CollectionDefinition] and all the
-        // ICollectionFixture<> interfaces.
+        // ... clean up test data from the database ...
     }
+
+    public SqlConnection Db { get; private set; }
+}
+
+[CollectionDefinition("Database collection_1", parameters: new[] { "myConnectionString1", "Some other information"})]
+public class DatabaseCollection_1 : ICollectionFixture<DatabaseFixture>
+{
+    // This class has no code, and is never created. Its purpose is simply
+    // to be the place to apply [CollectionDefinition] and all the
+    // ICollectionFixture<> interfaces.
+}
+
+[CollectionDefinitionAttribute("Database collection_2", "myConnectionString2", "...")]
+public class DatabaseCollection_2 : ICollectionFixture<DatabaseFixture>
+{
+    // This class has no code, and is never created. Its purpose is simply
+    // to be the place to apply [CollectionDefinition] and all the
+    // ICollectionFixture<> interfaces.
 }
